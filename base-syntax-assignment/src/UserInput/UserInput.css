@@ -1,0 +1,17 @@
+body {
+  background-image: linear-gradient(to bottom, rgba(50,50,50,0.3)), url("https://picsum.photos/1365/665/?random");
+}
+
+body button{
+  display: block;
+  border-radius: 5px;
+  margin: 15px auto;
+}
+
+.UserInput{
+  text-align: center;
+}
+
+.UserInput button{
+  margin-left: 0;
+}
