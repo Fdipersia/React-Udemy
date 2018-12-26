@@ -1,3 +1,7 @@
 .App {
   margin: 16px;
 }
+body{
+  display: flex;
+  justify-content: center;
+}

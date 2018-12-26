@@ -12,6 +12,11 @@ body button{
   text-align: center;
 }
 
+#inputForm{
+  text-align: center;
+  border-radius: 4px;
+}
+
 .UserInput button{
   margin-left: 0;
 }
