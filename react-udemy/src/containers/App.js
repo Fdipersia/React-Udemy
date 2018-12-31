@@ -5,6 +5,8 @@ import Persons from '../components/Persons/Persons';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import WithClass from '../hoc/WithClass';
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -18,7 +20,8 @@ class App extends Component {
     {id:"3", name: 'Steph', age: 30 }
     ],
     otherState: "some other value",
-    showPersons: false
+    showPersons: false,
+    authenticated: false
   }
 
   deletePersonHandler = (personIndex) =>{
@@ -50,15 +53,20 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
+
   render() {
     let persons = null;
     
     if (this.state.showPersons){
       persons = (
-          <Persons 
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}/>
+        <Persons 
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
     }
     
@@ -67,8 +75,10 @@ class App extends Component {
         <Cockpit 
           showPersons={this.state.showPersons}
           persons={this.state.persons}
-          clicked={this.togglePersonsHandler} />
-        {persons}
+          clicked={this.togglePersonsHandler}
+          login={this.loginHandler}
+        />
+        <AuthContext.Provider value={this.state.authenticated}>{persons}</AuthContext.Provider> 
       </WithClass>
     );
   }
